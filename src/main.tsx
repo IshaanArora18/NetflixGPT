@@ -1,30 +1,35 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import {createBrowserRouter, RouterProvider} from 'react-router'
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import Body from './Body'
 import App from './App'
 import SignUp from './SignUp'
+import { Provider } from 'react-redux'
+import appStore from './utils/appStore'
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element:<App />,
-    children:[
+    path: "/",
+    element: <App />,
+    children: [
       {
-        path:"/",
-        element:<SignUp />
+        path: "/",
+        element: <SignUp />
       },
       {
-        path:"/browse",
-        element:<Body />
+        path: "/browse",
+        element: <Body />
       }
     ]
   }
 ])
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={appStore}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 )

@@ -10,6 +10,7 @@ const SignUp = () => {
   const password = useRef<HTMLInputElement>(null);
   const name = useRef<HTMLInputElement>(null);
   const [validationResult, setValidationResult] = useState<string | null>(null);
+
   const handleSubmit = () => {
     const emailValue = email.current?.value;
     const passwordValue = password.current?.value;
