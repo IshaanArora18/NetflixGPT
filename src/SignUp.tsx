@@ -1,12 +1,37 @@
+import { useState } from 'react'
+import { BACKGROUND_IMAGE_SRC_SET, BACKGROUND_IMAGE_URL } from './utils/constants';
 const SignUp = () => {
+  const [isSignUp, setIsSignUp] = useState(true);
   return (
-    <div>
-      <form className="flex flex-col gap-4 max-w-sm mx-auto mt-10">
-        <input className="border border-gray-300 rounded py-2 px-4" type="text" placeholder="Name"></input>
-        <input className="border border-gray-300 rounded py-2 px-4" type="email" placeholder="Email"></input>
-        <input className="border border-gray-300 rounded py-2 px-4" type="password" placeholder="Password"></input>
-        <button className="bg-red-600 text-white py-2 px-4 rounded cursor-pointer" type="submit">Sign Up</button>
-        <p>Are you ready to watch movies and TV shows? <a href="/login" className="text-blue-500 hover:underline">Sign In</a></p>
+    <div className="bg-black min-h-screen relative">
+      {/* Background Image */}
+      <img
+        src={BACKGROUND_IMAGE_URL}
+        srcSet={BACKGROUND_IMAGE_SRC_SET}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* Form */}
+      <form className="flex flex-col gap-4 max-w-sm mx-auto mt-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/75 p-16 rounded-md z-10">
+        {isSignUp && (
+          <input className="border border-gray-300 rounded py-2 px-4 bg-gray-700 text-white placeholder-gray-400" type="text" placeholder="Name" />
+        )}
+        <input className="border border-gray-300 rounded py-2 px-4 bg-gray-700 text-white placeholder-gray-400" type="email" placeholder="Email" />
+        <input className="border border-gray-300 rounded py-2 px-4 bg-gray-700 text-white placeholder-gray-400" type="password" placeholder="Password" />
+        <button className="bg-red-600 text-white py-2 px-4 rounded cursor-pointer" type="submit">
+          {isSignUp ? "Sign Up" : "Sign In"}
+        </button>
+        <p className="text-gray-400">
+          {!isSignUp ? "Don't have an account?" : "Already have an account?"}
+          <span onClick={() => setIsSignUp(!isSignUp)} className="text-white hover:underline cursor-pointer ml-1">
+            {isSignUp ? "Sign In" : "Sign Up"}
+          </span>
+        </p>
       </form>
     </div>
   )

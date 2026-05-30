@@ -4,7 +4,7 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router'
 import Body from './Body'
 import App from './App'
-import SignUp from './SignUp.tsx'
+import SignUp from './SignUp'
 
 const router = createBrowserRouter([
   {
