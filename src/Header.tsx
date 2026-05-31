@@ -11,7 +11,6 @@ const Header = () => {
     });
   }
   const user = useSelector((store: { user: any }) => store.user.user);
-  console.log("User in header:", user);
   return (
     <div className="absolute w-screen px-8 py-2 bg-linear-to-b from-black z-10 flex justify-between">
       <svg

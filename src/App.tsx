@@ -12,30 +12,31 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+    const unsubscribe =onAuthStateChanged(auth, (user) => {
+      if (user) {
 
-      const uid = user.uid;
-      const displayName = user.displayName;
-      const email = user.email;
-      dispatch(addUser({ displayName, email }));
-      navigate('/browse');
+        const uid = user.uid;
+        const displayName = user.displayName;
+        const email = user.email;
+        dispatch(addUser({ displayName, email }));
+        navigate('/browse');
 
-    } else {
-      // User is signed out
-      // ...
-      dispatch(removeUser());
-      navigate('/');
-    }
-  });
-}, []);
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        navigate('/');
+      }
+    });
+    return ()=>unsubscribe();
+  }, []);
 
   return (
     <>
-      
+
       <div className="App">
         <Header />
-        <Outlet/>
+        <Outlet />
       </div>
     </>
   )

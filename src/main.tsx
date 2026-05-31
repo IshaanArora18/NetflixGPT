@@ -2,11 +2,11 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import Body from './Body'
 import App from './App'
 import SignUp from './SignUp'
 import { Provider } from 'react-redux'
 import appStore from './utils/appStore'
+import Browse from './Browse'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/browse",
-        element: <Body />
+        element: <Browse />
       }
     ]
   }
