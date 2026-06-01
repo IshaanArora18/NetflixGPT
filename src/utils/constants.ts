@@ -5,6 +5,12 @@ export const TMDB_API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${import.meta.env.TMDB_ACCESS_TOKEN}`
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`
     }
 };
+export const TMDB_GET_NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+export const FORM_TMDB_MOVIE_URL = (movieId: string | number) => `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;
+export const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w780";
+export const TMDB_GET_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular";
+export const TMDB_GET_TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated";
+export const TMDB_GET_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming";
