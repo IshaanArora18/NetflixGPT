@@ -6,6 +6,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
 import { useDispatch } from 'react-redux'
 import { addUser, removeUser } from './utils/userSlice'
+import { clearGPTSearchResults, setGPTToggleState } from './utils/gptSlice'
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +16,6 @@ function App() {
     const unsubscribe =onAuthStateChanged(auth, (user) => {
       if (user) {
 
-        const uid = user.uid;
         const displayName = user.displayName;
         const email = user.email;
         dispatch(addUser({ displayName, email }));
@@ -26,6 +26,8 @@ function App() {
         // ...
         dispatch(removeUser());
         navigate('/');
+        dispatch(clearGPTSearchResults());
+        dispatch(setGPTToggleState(false));
       }
     });
     return ()=>unsubscribe();

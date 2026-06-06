@@ -14,3 +14,4 @@ export const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w780";
 export const TMDB_GET_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular";
 export const TMDB_GET_TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated";
 export const TMDB_GET_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming";
+export const TMDB_GET_MOVIE_BY_NAME_URL = (movieName: string) => `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieName)}`;

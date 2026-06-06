@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { FORM_TMDB_MOVIE_URL, TMDB_API_OPTIONS } from "../utils/constants";
+import { useSelector } from "react-redux";
 
 const useVideoBackground = (movieId: number) => {
     const [backgroundVideoKey, setBackgroundVideoKey] = useState<string | null>(null);
+    const videoBackgroundTrailerId = useSelector((store: any) => store?.movies?.videoBackgroundTrailerId);
     const getVideoBackground = async () => {
         try {
             const response = await fetch(FORM_TMDB_MOVIE_URL(movieId), TMDB_API_OPTIONS);
@@ -16,7 +18,9 @@ const useVideoBackground = (movieId: number) => {
         }
     };
     useEffect(() => {
-        getVideoBackground();
+        if(!videoBackgroundTrailerId) {
+            getVideoBackground();
+        }
     }, [])
     return backgroundVideoKey ;
 };

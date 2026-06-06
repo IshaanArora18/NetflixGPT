@@ -5,6 +5,7 @@ import SecondaryContainer from "./SecondaryContainer";
 import useUpcomingMovies from "./hooks/useUpcomingMovies";
 import useTopRatedMovies from "./hooks/useTopRatedMovies";
 import usePopularMovies from "./hooks/usePopularMovies";
+import GptSearch from "./GptSearch";
 
 const Browse = () => {
 
@@ -12,12 +13,18 @@ const Browse = () => {
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
+
   const movies = useSelector((store: any) => store?.movies?.nowPlayingMovies);
+  const isGptSearchEnabled = useSelector((store: { gpt: any }) => store.gpt.isGptSearchEnabled);
+  
   return (
     <div>
-      {/* Passing now playing movies to MainContainer */}
-      <MainContainer movies={movies} />
-      <SecondaryContainer />
+      {
+        isGptSearchEnabled ? <GptSearch /> :
+          <>
+            <MainContainer movies={movies} />
+            <SecondaryContainer />
+          </>}
     </div>
   )
 }

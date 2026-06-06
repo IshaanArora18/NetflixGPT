@@ -1,18 +1,29 @@
 import { signOut } from "@firebase/auth";
 import { auth } from "./firebase";
 import { PROFILE_ICON_URL } from "./utils/constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleGptSearch } from "./utils/gptSlice";
+
 const Header = () => {
+
+  const dispatch = useDispatch();
+
   const handleSignOut = () => {
     signOut(auth).then(() => {
       // Sign-out successful.
     }).catch((error) => {
-      // An error happened.
+      console.error("Error signing out:", error);
     });
   }
+  const enableDisableGptSearch = () => {
+    dispatch(toggleGptSearch());
+  }
+
   const user = useSelector((store: { user: any }) => store.user.user);
+  const isGptSearchEnabled = useSelector((store: { gpt: any }) => store.gpt.isGptSearchEnabled);
+
   return (
-    <div className="absolute w-screen px-8 py-2 bg-linear-to-b from-black z-10 flex justify-between">
+    <div className="absolute w-screen px-8 py-2 bg-linear-to-b from-black z-10 flex flex-col md:flex-row justify-between">
       <svg
         viewBox="0 0 111 30"
         version="1.1"
@@ -33,9 +44,27 @@ const Header = () => {
         </g>
       </svg>
       {user && (
-        <div className="flex p-2">
-          <img src={PROFILE_ICON_URL} alt="Profile" className="w-12 h-12" />
-          <button className="text-white bg-red-600 hover:bg-red-700 m-2 px-2 py-2 rounded cursor-pointer" onClick={handleSignOut}>
+        <div className="flex items-center gap-3 p-2">
+          <button
+            onClick={enableDisableGptSearch}
+            className="text-white text-sm font-medium px-4 py-2 rounded cursor-pointer transition-opacity duration-200 hover:opacity-80"
+            style={{ background: isGptSearchEnabled ? "#6b21a8" : "#7c3aed", border: "none" }}
+          >
+            {isGptSearchEnabled ? "✦ Disable GPT" : "✦ GPT Search"}
+          </button>
+
+          <img
+            src={PROFILE_ICON_URL}
+            alt="Profile"
+            className="w-9 h-9 rounded cursor-pointer object-cover hover:opacity-80 transition-opacity duration-200"
+            style={{ border: "2px solid rgba(255,255,255,0.3)" }}
+          />
+
+          <button
+            onClick={handleSignOut}
+            className="text-white text-sm font-medium px-4 py-2 rounded cursor-pointer transition-opacity duration-200 hover:opacity-80"
+            style={{ background: "#e50914", border: "none" }}
+          >
             Sign Out
           </button>
         </div>

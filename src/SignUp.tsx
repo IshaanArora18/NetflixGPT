@@ -52,12 +52,12 @@ const SignUp = () => {
     }
   }
   return (
-    <div className="bg-black min-h-screen relative">
+    <div className="bg-black min-h-screen relative overflow-hidden">
       {/* Background Image */}
       <img
         src={BACKGROUND_IMAGE_URL}
         srcSet={BACKGROUND_IMAGE_SRC_SET}
-        alt=""
+        alt="Background Image"
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -66,7 +66,7 @@ const SignUp = () => {
       <div className="absolute inset-0 bg-black/60" />
 
       {/* Form */}
-      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex flex-col gap-4 max-w-sm mx-auto mt-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/75 p-16 rounded-md z-10">
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex flex-col gap-4 max-w-sm mx-auto mt-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/75 p-8 rounded-md z-10 md:p-16">
         <p className="text-2xl font-bold text-white">{isSignUp ? "Sign Up" : "Sign In"}</p>
         {isSignUp && (
           <input className="border border-gray-300 rounded py-2 px-4 bg-gray-700 text-white placeholder-gray-400" type="text" placeholder="Name" ref={name} />
