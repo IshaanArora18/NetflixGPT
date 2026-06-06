@@ -23,7 +23,7 @@ const Header = () => {
   const isGptSearchEnabled = useSelector((store: { gpt: any }) => store.gpt.isGptSearchEnabled);
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-linear-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+    <div className="absolute w-screen px-4 py-1 md:px-8 md:py-2 bg-linear-to-b from-black z-10 flex flex-col md:flex-row justify-between">
       <svg
         viewBox="0 0 111 30"
         version="1.1"

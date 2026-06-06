@@ -22,11 +22,6 @@ const SignUp = () => {
       if (isSignUp && emailValue && passwordValue) {
 
         createUserWithEmailAndPassword(auth, emailValue, passwordValue)
-          .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-            console.log("User signed up successfully:", user);
-          })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -35,11 +30,6 @@ const SignUp = () => {
       }
       else if (emailValue && passwordValue) {
         signInWithEmailAndPassword(auth, emailValue, passwordValue)
-          .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log("User signed in successfully:", user);
-          })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -48,7 +38,7 @@ const SignUp = () => {
       }
     }
     else {
-      console.log(`Invalid details. Please check your input: ${validationResult}`);
+      console.error(`Invalid details. Please check your input: ${validationResult}`);
     }
   }
   return (

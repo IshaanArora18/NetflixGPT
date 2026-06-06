@@ -51,7 +51,7 @@ const GptSearch = () => {
             <div className="absolute inset-0 bg-black/60" />
 
             <div className="relative z-10 w-full max-w-2xl px-4 flex flex-col items-center gap-4">
-                <h1 className="text-white text-3xl font-bold text-center">Find something to watch</h1>
+                <h1 className="text-white text-lg md:text-2xl lg:text-3xl font-bold text-center">Find something to watch</h1>
                 <p className="text-gray-400 text-sm text-center">Search movies, TV shows, genres and more</p>
 
                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex w-full mt-2">
@@ -77,7 +77,7 @@ const GptSearch = () => {
                     />
                 }
                 {useSearchResults && (
-                    <div className="relative z-10 max-w-6xl px-4">
+                    <div className="relative z-10 max-w-full md:max-w-2xl lg:max-w-4xl px-4">
                         <MovieList title="Search Results" movies={useSearchResults} />
                     </div>
                 )}
