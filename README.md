@@ -10,3 +10,5 @@
 # register netflix-gpt app on TMDB and get access to API key and Read Access Token.
 # use the nowplaying, top_rated, upcoming and popular movie apis to get access to the movies.
 # use Youtube embedd URL to show live background movie.
+# Add claude API to perform search for user input queries.
+# Add responsiveness to the site for smaller viewports.
